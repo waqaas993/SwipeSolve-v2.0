@@ -55,6 +55,11 @@ public class PathfindingTest : MonoBehaviour{
 		foreach(var node in redSearch.path){
 			GetImage(node.label).color = Color.red;
 		}
+
+/*		if(redSearch.path.Count <= 3 && blueSearch.path.Count <= 3){
+			Debug.Log ("Level Not Solvable");
+		} 
+*/
 	}
 
 	Image GetImage(string label){
@@ -73,4 +78,5 @@ public class PathfindingTest : MonoBehaviour{
 			}
 		}
 	}
+
 }

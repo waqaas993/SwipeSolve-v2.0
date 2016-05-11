@@ -84,6 +84,4 @@ public class Search{
 	public Node ChoseNode(){
 		return reachable[Random.Range(0, reachable.Count)];
 	}
-
-
 }

@@ -36,7 +36,7 @@ public class CreateLevel5x5 : MonoBehaviour {
 	
 	public static void DropIngredient(int TileIndex){
 		switch (SelectedIngredient) {
-		
+	
 		case "RedBall":
 			if (!RedBall) {
 				if(Resources.Load("BlueBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){

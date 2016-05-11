@@ -29,22 +29,18 @@ public class Graph{
 					continue;
 				}
 
-				//Up
 				if(r > 0){
 					node.adjacent.Add(nodes[cols*(r-1)+c]);
 				}
 
-				//Right
 				if(c < cols-1){
 					node.adjacent.Add(nodes[cols*r+c+1]);
 				}
 
-				//Down
 				if(r < rows-1){
 					node.adjacent.Add(nodes[cols*(r+1)+c]);
 				}
 
-				//Left
 				if(c > 0){
 					node.adjacent.Add(nodes[cols*r+c-1]);
 				}

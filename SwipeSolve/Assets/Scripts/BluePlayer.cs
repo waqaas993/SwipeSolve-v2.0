@@ -14,8 +14,8 @@ public class BluePlayer : Controller {
 		base.Start ();
 	}
 
-/*
- //For Keboard Inputs
+
+/* //For Keboard Inputs
 	// Update is called once per frame
 	protected override void Update() {
 		if (!GameManager.isGameOver) {
@@ -39,7 +39,8 @@ public class BluePlayer : Controller {
 			}
 		}
 		base.Update ();
-	}*/
+	}
+*/
 
 	//For Android Inputs
 	// Update is called once per frame
@@ -54,19 +55,19 @@ public class BluePlayer : Controller {
 					fingerEnd = touch.position;
 				}
 				if(touch.phase == TouchPhase.Ended){
-					if((fingerStart.x - fingerEnd.x) > 75 ){		//Swipe Left
+					if((fingerStart.x - fingerEnd.x) > 100 ){		//Swipe Left
 						if (canMove (-1, 0, "BluePlayer"))
 							StartCoroutine (Move (end));
 					}
-					else if((fingerStart.x - fingerEnd.x) < -75){	//Swipe Right
+					else if((fingerStart.x - fingerEnd.x) < -100){	//Swipe Right
 						if (canMove (1, 0, "BluePlayer"))
 							StartCoroutine (Move (end));
 					}
-					else if((fingerStart.y - fingerEnd.y) < -75){	//Swipe Up
+					else if((fingerStart.y - fingerEnd.y) < -100){	//Swipe Up
 						if (canMove (0, 1, "BluePlayer"))
 							StartCoroutine (Move (end));
 					}
-					else if((fingerStart.y - fingerEnd.y) > 75){	//Swipe Down
+					else if((fingerStart.y - fingerEnd.y) > 100){	//Swipe Down
 						if (canMove (0, -1, "BluePlayer"))
 							StartCoroutine (Move (end));
 					}

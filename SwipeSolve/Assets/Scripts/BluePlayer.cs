@@ -14,7 +14,7 @@ public class BluePlayer : Controller {
 		base.Start ();
 	}
 
-
+	/*
  //For Keboard Inputs
 	// Update is called once per frame
 	protected override void Update() {
@@ -39,9 +39,9 @@ public class BluePlayer : Controller {
 			}
 		}
 		base.Update ();
-	}
+	}*/
 
-/*
+
 	//For Android Inputs
 	// Update is called once per frame
 	protected override void Update() {
@@ -76,5 +76,5 @@ public class BluePlayer : Controller {
 		}
 		base.Update ();
 	}
-    */
+    
 }

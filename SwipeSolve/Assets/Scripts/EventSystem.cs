@@ -2,12 +2,13 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EventSystem : MonoBehaviour {
 
 	public void ChangeToScene (string sceneToChangeTo)
 	{
-		Application.LoadLevel(sceneToChangeTo);
+		SceneManager.LoadScene(sceneToChangeTo);
 	}
 
 	public void SelectLevel(int Level)
@@ -15,7 +16,12 @@ public class EventSystem : MonoBehaviour {
 		PlayerPrefs.SetInt("CurrentLevel",Level);
 	}
 
-	public void SelectWorld(int World)
+    public void SelectLevelEditor(int BoardSize)
+    {
+        PlayerPrefs.SetInt("CurrentLevelEditor", BoardSize);
+    }
+
+    public void SelectWorld(int World)
 	{
 		PlayerPrefs.SetInt("CurrentWorld",World);
 	}
@@ -80,7 +86,7 @@ public class EventSystem : MonoBehaviour {
 		GameManager.startTime = Time.time;
 		SurvivalInstr.SetActive(false);
 	}
-
+    /*
 	void update(){
 	  if (Application.platform == RuntimePlatform.Android){ 
 		if(Application.loadedLevelName=="MainMenu"){
@@ -145,5 +151,5 @@ public class EventSystem : MonoBehaviour {
 		}
 	  }
 	}
-
+    */
 }

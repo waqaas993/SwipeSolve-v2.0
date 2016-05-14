@@ -1,30 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System;
 
-public class CreateLevel6x6 : MonoBehaviour {
+public class CreateLevel : MonoBehaviour {
 
-	private static GameObject[] Blocks = new GameObject[36];
+    int BoardSize;
+    private static GameObject[] Blocks;
 	public static string SelectedIngredient;
-	
+
 	private static bool RedBall;
 	private static bool BlueBall;
 	private static bool RedHole;
 	private static bool BlueHole;
-	
-	
+
+
 	void Awake(){
-		
-		RedBall = false;
+        
+        BoardSize = PlayerPrefs.GetInt("CurrentLevelEditor");
+        Blocks = new GameObject[BoardSize * BoardSize];
+
+        RedBall = false;
 		BlueBall = false;
 		RedHole = false;
 		BlueHole = false;
-		
-		
-		for (int i = 0; i < 36; i++) {
+
+
+		for (int i = 0; i < (BoardSize*BoardSize); i++) {
 			string tile = "Tile"+(i+1);
-			Blocks[i] = GameObject.FindGameObjectWithTag(tile);				
+			Blocks[i] = GameObject.Find(tile);				
 		}
-		
+
 		SelectedIngredient = "Obstacle";
 		
 		for ( int i = 0 ; i < Blocks.Length ; i++)
@@ -34,7 +40,7 @@ public class CreateLevel6x6 : MonoBehaviour {
 	
 	public static void DropIngredient(int TileIndex){
 		switch (SelectedIngredient) {
-			
+	
 		case "RedBall":
 			if (!RedBall) {
 				if(Resources.Load("BlueBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
@@ -60,7 +66,7 @@ public class CreateLevel6x6 : MonoBehaviour {
 				break;
 			}
 			break;
-			
+		
 		case "BlueBall":
 			if (!BlueBall) {
 				if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
@@ -86,7 +92,7 @@ public class CreateLevel6x6 : MonoBehaviour {
 				break;
 			}
 			break;
-			
+		
 		case "BlueHole":
 			if (!BlueHole) {
 				if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
@@ -112,7 +118,7 @@ public class CreateLevel6x6 : MonoBehaviour {
 				break;
 			}
 			break;
-			
+		
 		case "Obstacle":
 			if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
 				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
@@ -135,7 +141,7 @@ public class CreateLevel6x6 : MonoBehaviour {
 				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
 			}
 			break;
-			
+		
 		case "RedHole":
 			if (!RedHole) {
 				if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
@@ -161,7 +167,7 @@ public class CreateLevel6x6 : MonoBehaviour {
 				break;
 			}
 			break;
-			
+
 		case "Tile":
 			if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
 				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
@@ -186,5 +192,5 @@ public class CreateLevel6x6 : MonoBehaviour {
 			break;
 		}
 	}
-
+	
 }

@@ -6,9 +6,11 @@ using System;
 
 public class PathfindingTest : MonoBehaviour{
 
-	public GameObject mapGroup;
+    int BoardSize;
 
-	public Sprite Obstacle;
+    public GameObject mapGroup;
+    private int[,] map;
+    public Sprite Obstacle;
 	public Sprite RedBall;
 	public Sprite BlueBall;
 	public Sprite RedHole;
@@ -17,26 +19,39 @@ public class PathfindingTest : MonoBehaviour{
 	public Text RedText;
 	public Text BlueText;
 
-	//public static int x;
-	//public static int y;
+    private JsonSchema JsonObject;
 
-	//public Button TestOne;
-	//public Button TestTwo;
-	//public Button TestThree;
+    // Use this for initialization
+    void Start () {
+        BoardSize = PlayerPrefs.GetInt("CurrentLevelEditor");
+        JsonObject = JsonUtility.FromJson<JsonSchema>(CreateLevel.JsonString);
 
-	// Use this for initialization
-	void Start () {
-		//TestOne.onClick.AddListener(() => { MapOne();});
-		//TestTwo.onClick.AddListener(() => { MapTwo();});
-		//TestThree.onClick.AddListener(() => { MapThree();});
+        if (BoardSize == 5) {
+            map = new int[5, 5]{
+            {0,0,0,0,0},
+            {0,0,0,0,0},
+            {0,0,0,0,0},
+            {0,0,0,0,0},
+            {0,0,0,0,0}
+            };
+        }
+        else if (BoardSize == 6) {
+            map = new int[6, 6]{
+            {0,0,0,0,0,0},
+            {0,0,0,0,0,0},
+            {0,0,0,0,0,0},
+            {0,0,0,0,0,0},
+            {0,0,0,0,0,0},
+            {0,0,0,0,0,0}
+        };
+        }
 
-		int[,] map = new int[5, 5]{
-			{0,0,0,0,1},
-			{0,0,1,0,0},
-			{0,1,0,1,0},
-			{0,0,0,0,0},
-			{0,1,0,0,1}
-		};
+        for (int r = 0; r < BoardSize; r++) {
+            for (int c = 0; r < BoardSize; c++){
+                Debug.Log(map[r,c]);
+            }
+        }
+
 		
 		var graph = new Graph (map);
 		ResetMapGroup(graph);

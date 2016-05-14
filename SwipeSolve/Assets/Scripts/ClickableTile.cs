@@ -6,6 +6,7 @@ public class ClickableTile : MonoBehaviour {
 	public int TileIndex;
 	public string TileInformation;
 	
+
 	void OnMouseDown(){
 			if (TileInformation == "")
 				CreateLevel.DropIngredient(TileIndex);

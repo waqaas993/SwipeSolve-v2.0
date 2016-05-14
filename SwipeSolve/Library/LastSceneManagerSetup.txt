@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CustomCreateLevel6x6.unity
+- path: Assets/Scenes/CustomCreateLevel5x5.unity
   isLoaded: 1
   isActive: 1

@@ -13,10 +13,12 @@ public class CreateLevel : MonoBehaviour {
 	private static bool BlueBall;
 	private static bool RedHole;
 	private static bool BlueHole;
+    private JsonSchema JsonObject;
+    public static string JsonString;
 
 
-	void Awake(){
-        
+    void Awake(){
+        JsonObject = new JsonSchema();
         BoardSize = PlayerPrefs.GetInt("CurrentLevelEditor");
         Blocks = new GameObject[BoardSize * BoardSize];
 
@@ -192,5 +194,24 @@ public class CreateLevel : MonoBehaviour {
 			break;
 		}
 	}
-	
+
+
+
+    public void GenerateMapData() {
+        BoardSize = PlayerPrefs.GetInt("CurrentLevelEditor");
+        JsonObject.BoardSize = BoardSize; 
+        for (int i = 0; i < (BoardSize * BoardSize); i++){
+            if (Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[i].GetComponent<SpriteRenderer>().sprite)
+                JsonObject.RedBall = i;
+            else if (Resources.Load("BlueBall", typeof(Sprite)) as Sprite == Blocks[i].GetComponent<SpriteRenderer>().sprite)
+                JsonObject.BlueBall = i;
+            else if (Resources.Load("RedHole", typeof(Sprite)) as Sprite == Blocks[i].GetComponent<SpriteRenderer>().sprite)
+                JsonObject.RedHole = i;
+            else if (Resources.Load("BlueHole", typeof(Sprite)) as Sprite == Blocks[i].GetComponent<SpriteRenderer>().sprite)
+                JsonObject.BlueHole = i;
+            else if (Resources.Load("Obs", typeof(Sprite)) as Sprite == Blocks[i].GetComponent<SpriteRenderer>().sprite)
+                JsonObject.Obstacles.Add(i);                
+        }
+        JsonString = JsonUtility.ToJson(JsonObject);
+    }
 }

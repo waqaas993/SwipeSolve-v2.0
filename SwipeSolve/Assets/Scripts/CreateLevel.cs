@@ -219,7 +219,8 @@ public class CreateLevel : MonoBehaviour {
 
     public void GenerateMapData() {
         BoardSize = PlayerPrefs.GetInt("CurrentLevelEditor");
-        JsonObject.BoardSize = BoardSize; 
+        JsonObject.BoardSize = BoardSize;
+        JsonObject.Obstacles.Clear();
         for (int i = 0; i < (BoardSize * BoardSize); i++){
             if (Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[i].GetComponent<SpriteRenderer>().sprite)
                 JsonObject.RedBall = i;

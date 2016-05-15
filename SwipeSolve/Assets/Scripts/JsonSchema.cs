@@ -9,5 +9,14 @@ public class JsonSchema {
     public int BlueBall;
     public int RedHole;
     public int BlueHole;
-    public List<int> Obstacles = new List<int>();
+    public List<int> Obstacles;
+
+    public JsonSchema() {
+        BoardSize = 0;
+        RedBall = 100;
+        BlueBall = 100;
+        RedHole = 100;
+        BlueHole = 100;
+        Obstacles = new List<int>();
+    }
 }

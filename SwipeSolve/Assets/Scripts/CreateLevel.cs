@@ -13,7 +13,7 @@ public class CreateLevel : MonoBehaviour {
 	private static bool BlueBall;
 	private static bool RedHole;
 	private static bool BlueHole;
-    private JsonSchema JsonObject;
+    private static JsonSchema JsonObject;
     public static string JsonString;
 
 
@@ -46,24 +46,27 @@ public class CreateLevel : MonoBehaviour {
 		case "RedBall":
 			if (!RedBall) {
 				if(Resources.Load("BlueBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedBall", typeof(Sprite)) as Sprite;
-					BlueBall = false;
-					RedBall = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedBall", typeof(Sprite)) as Sprite;
+                        JsonObject.BlueBall = 100;
+                        BlueBall = false;
+                        RedBall = true;
 				}
 				else if(Resources.Load("RedHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedBall", typeof(Sprite)) as Sprite;
-					RedHole = false;
-					RedBall = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedBall", typeof(Sprite)) as Sprite;
+                        JsonObject.RedHole = 100;
+                        RedHole = false;
+                        RedBall = true;
 				}
 				else if(Resources.Load("BlueHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedBall", typeof(Sprite)) as Sprite;
-					BlueHole = false;
-					RedBall = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedBall", typeof(Sprite)) as Sprite;
+                        JsonObject.BlueHole = 100;
+                        BlueHole = false;
+                        RedBall = true;
 				}
 				else
 				{
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedBall", typeof(Sprite)) as Sprite;
-					RedBall = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedBall", typeof(Sprite)) as Sprite;
+                        RedBall = true;
 				}
 				break;
 			}
@@ -72,24 +75,27 @@ public class CreateLevel : MonoBehaviour {
 		case "BlueBall":
 			if (!BlueBall) {
 				if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueBall", typeof(Sprite)) as Sprite;
-					RedBall = false;
-					BlueBall = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueBall", typeof(Sprite)) as Sprite;
+                        JsonObject.RedBall = 100;
+                        RedBall = false;
+                        BlueBall = true;
 				}
 				else if(Resources.Load("RedHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueBall", typeof(Sprite)) as Sprite;
-					RedHole = false;
-					BlueBall = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueBall", typeof(Sprite)) as Sprite;
+                        JsonObject.RedHole = 100;
+                        RedHole = false;
+                        BlueBall = true;
 				}
 				else if(Resources.Load("BlueHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueBall", typeof(Sprite)) as Sprite;
-					BlueHole = false;
-					BlueBall = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueBall", typeof(Sprite)) as Sprite;
+                        JsonObject.BlueHole = 100;
+                        BlueHole = false;
+                        BlueBall = true;
 				}
 				else
 				{
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueBall", typeof(Sprite)) as Sprite;
-					BlueBall = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueBall", typeof(Sprite)) as Sprite;
+                        BlueBall = true;
 				}
 				break;
 			}
@@ -98,24 +104,27 @@ public class CreateLevel : MonoBehaviour {
 		case "BlueHole":
 			if (!BlueHole) {
 				if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueHole", typeof(Sprite)) as Sprite;
-					RedBall = false;
-					BlueHole = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueHole", typeof(Sprite)) as Sprite;
+                        JsonObject.RedBall = 100;
+                        RedBall = false;
+                        BlueHole = true;
 				}
 				else if(Resources.Load("BlueBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueHole", typeof(Sprite)) as Sprite;
-					BlueBall = false;
-					BlueHole = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueHole", typeof(Sprite)) as Sprite;
+                        JsonObject.BlueBall = 100;
+                        BlueBall = false;
+                        BlueHole = true;
 				}
 				else if(Resources.Load("RedHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueHole", typeof(Sprite)) as Sprite;
-					RedHole = false;
-					BlueHole = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueHole", typeof(Sprite)) as Sprite;
+                        JsonObject.RedHole = 100;
+                        RedHole = false;
+                        BlueHole = true;
 				}
 				else
 				{
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueHole", typeof(Sprite)) as Sprite;
-					BlueHole = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("BlueHole", typeof(Sprite)) as Sprite;
+                        BlueHole = true;
 				}
 				break;
 			}
@@ -123,20 +132,24 @@ public class CreateLevel : MonoBehaviour {
 		
 		case "Obstacle":
 			if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
-				RedBall = false;
+                    Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
+                    JsonObject.RedBall = 100;
+                    RedBall = false;
 			}
 			else if(Resources.Load("BlueBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
-				BlueBall = false;
+                    Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
+                    JsonObject.BlueBall = 100;
+                    BlueBall = false;
 			}
 			else if(Resources.Load("RedHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
-				RedHole = false;
+                    Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
+                    JsonObject.RedHole = 100;
+                    RedHole = false;
 			}
 			else if(Resources.Load("BlueHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
-				BlueHole = false;
+                    Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Obs", typeof(Sprite)) as Sprite;
+                    JsonObject.BlueHole = 100;
+                    BlueHole = false;
 			}
 			else
 			{
@@ -147,19 +160,22 @@ public class CreateLevel : MonoBehaviour {
 		case "RedHole":
 			if (!RedHole) {
 				if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedHole", typeof(Sprite)) as Sprite;
-					RedBall = false;
-					RedHole = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedHole", typeof(Sprite)) as Sprite;
+                        JsonObject.RedBall = 100;
+                        RedBall = false;
+                        RedHole = true;
 				}
 				else if(Resources.Load("BlueBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedHole", typeof(Sprite)) as Sprite;
-					BlueBall = false;
-					RedHole = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedHole", typeof(Sprite)) as Sprite;
+                        JsonObject.BlueBall = 100;
+                        BlueBall = false;
+                        RedHole = true;
 				}
 				else if(Resources.Load("BlueHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-					Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedHole", typeof(Sprite)) as Sprite;
-					BlueHole = false;
-					RedHole = true;
+                        Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("RedHole", typeof(Sprite)) as Sprite;
+                        JsonObject.BlueHole = 100;
+                        BlueHole = false;
+                        RedHole = true;
 				}
 				else
 				{
@@ -172,20 +188,24 @@ public class CreateLevel : MonoBehaviour {
 
 		case "Tile":
 			if(Resources.Load("RedBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
-				RedBall = false;
+                    Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
+                    JsonObject.RedBall = 100;
+                    RedBall = false;
 			}
 			else if(Resources.Load("BlueBall", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
-				BlueBall = false;
+                    Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
+                    JsonObject.BlueBall = 100;
+                    BlueBall = false;
 			}
 			else if(Resources.Load("RedHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
-				RedHole = false;
+                    Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
+                    JsonObject.RedHole = 100;
+                    RedHole = false;
 			}
 			else if(Resources.Load("BlueHole", typeof(Sprite)) as Sprite == Blocks[TileIndex].GetComponent<SpriteRenderer>().sprite){
-				Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
-				BlueHole = false;
+                    Blocks[TileIndex].GetComponent<SpriteRenderer> ().sprite = Resources.Load("Block", typeof(Sprite)) as Sprite;
+                    JsonObject.BlueHole = 100;
+                    BlueHole = false;
 			}
 			else
 			{
@@ -210,8 +230,12 @@ public class CreateLevel : MonoBehaviour {
             else if (Resources.Load("BlueHole", typeof(Sprite)) as Sprite == Blocks[i].GetComponent<SpriteRenderer>().sprite)
                 JsonObject.BlueHole = i;
             else if (Resources.Load("Obs", typeof(Sprite)) as Sprite == Blocks[i].GetComponent<SpriteRenderer>().sprite)
-                JsonObject.Obstacles.Add(i);                
+            {
+                if (!JsonObject.Obstacles.Contains(i))
+                    JsonObject.Obstacles.Add(i);
+            }                
         }
         JsonString = JsonUtility.ToJson(JsonObject);
+        Debug.Log(JsonString);
     }
 }

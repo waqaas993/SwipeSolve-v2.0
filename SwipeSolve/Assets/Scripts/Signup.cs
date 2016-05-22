@@ -1,33 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Signup : MonoBehaviour
 {
 
-    string URL;
-    string username;
-    string password1;
-    string password2;
-    string email;
-    string nick;
+    private static string URL;
+
+    private static InputField Username;
+    private static InputField Password1;
+    private static InputField Password2;
+    private static InputField Email;
+    private static InputField Nick;
 
 
     // Use this for initialization
-    IEnumerator Start()
+    public void OnSubmit()
     {
-        username = "Hassaan";
-        password1 = "hassaan";
-        password2 = "hassaan";
-        email = "hassaan@gmail.com";
-        nick = "Physcho";
+        Username = GameObject.Find("InputField1").GetComponent<InputField>();
+        Password1 = GameObject.Find("InputField2").GetComponent<InputField>();
+        Password2 = GameObject.Find("InputField3").GetComponent<InputField>();
+        Email = GameObject.Find("InputField4").GetComponent<InputField>();
+        Nick = GameObject.Find("InputField5").GetComponent<InputField>();
 
         URL = "http://swipe.googglet.com/signup.php?username=";
-        URL += username + "&password1=";
-        URL += password1 + "&password2=";
-        URL += password2 + "&email=";
-        URL += email + "&nick=";
-        URL += nick;
-        
+        URL += Username.text + "&password1=";
+        URL += Password1.text + "&password2=";
+        URL += Password2.text + "&email=";
+        URL += Email.text + "&nick=";
+        URL += Nick.text;
+
+        StartCoroutine(signup());
+
+    }
+
+    private IEnumerator signup() {
         WWW Data = new WWW(URL);
         yield return Data;
         print(Data.text);

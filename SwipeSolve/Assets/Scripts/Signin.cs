@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Signin : MonoBehaviour
 {
@@ -9,16 +10,19 @@ public class Signin : MonoBehaviour
     private static InputField Username;
     private static InputField Password;
     private static GameObject OnScreenButtonsPanel;
+    private static GameObject loginSuccess;
 
     void Awake()
     {
-        OnScreenButtonsPanel = GameObject.Find("fill-all");
+        OnScreenButtonsPanel = GameObject.Find("invalid-cred");
+        loginSuccess = GameObject.Find("login-success");
         Defaults();
     }
 
     public void Defaults()
     {
         OnScreenButtonsPanel.SetActive(false);
+        loginSuccess.SetActive(false);
     }
 
     // Use this for initialization
@@ -43,8 +47,10 @@ public class Signin : MonoBehaviour
 
         if (Data.text == "0")
             OnScreenButtonsPanel.SetActive(true);
-        else
-            Debug.Log(Data.text);
-
+        else if (Data.text == "1") {
+            loginSuccess.SetActive(true);
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Signup : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Signup : MonoBehaviour
     private static GameObject OnScreenButtonsPanel;
     private static GameObject userTaken;
     private static GameObject passMismatch;
+    private static GameObject SignupSuccess;
 
 
     void Awake()
@@ -23,6 +25,7 @@ public class Signup : MonoBehaviour
         OnScreenButtonsPanel = GameObject.Find("OnScreenButtonsPanel");
         userTaken = GameObject.Find("user-taken");
         passMismatch = GameObject.Find("pass-mismatch");
+        SignupSuccess = GameObject.Find("Signup-Succesful");
         Defaults();
     }
 
@@ -31,6 +34,7 @@ public class Signup : MonoBehaviour
         OnScreenButtonsPanel.SetActive(false);
         userTaken.SetActive(false);
         passMismatch.SetActive(false);
+        SignupSuccess.SetActive(false);
     }
 
     // Use this for initialization
@@ -68,8 +72,11 @@ public class Signup : MonoBehaviour
         //Server-sided Data validation
         if (Data.text == "0")
             userTaken.SetActive(true);
-        else
-            Debug.Log(Data.text);
+        else if (Data.text == "1"){
+            SignupSuccess.SetActive(true);
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene("MainMenu");
+        }
         //Continue to the new screen in else-clause
     }
 

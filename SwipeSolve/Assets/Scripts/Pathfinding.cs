@@ -12,6 +12,21 @@ public class Pathfinding : MonoBehaviour
     private JsonSchema JsonObject;
     private int row;
     private int col;
+    //private static GameObject OopsPanel;
+    //private static GameObject GreatChallengePanel;
+    //private static GameObject PlaceAllIngredientsPanel;
+
+    private void Awake() {
+        //OopsPanel = GameObject.Find("OopsPanel");
+        //GreatChallengePanel = GameObject.Find("GoodToGoPanel");
+        //GreatChallengePanel = GameObject.Find("PlaceAllIngredientsPanel");
+    }
+
+    //public void Defaults() {
+    //    OopsPanel.SetActive(false);
+    //    GreatChallengePanel.SetActive(false);
+    //    //PlaceAllIngredientsPanel.SetActive(false);
+    //}
 
     // Use this for initialization
     public void StartSearch()
@@ -65,16 +80,16 @@ public class Pathfinding : MonoBehaviour
             while (!redSearch.finished)
                 redSearch.Step();
 
-            if (redSearch.path.Count != 0 && blueSearch.path.Count != 0)
-                Debug.Log("Level Solvable!");
-            else
-                Debug.Log("Level NOT Solvable!");
+            //if (redSearch.path.Count != 0 && blueSearch.path.Count != 0)
+            //    OopsPanel.SetActive(true);
+            //else
+            //    GreatChallengePanel.SetActive(true);
         }
 
 
         catch (Exception)
         {
-            Debug.Log("Please place complete set of ingredients necessary for a Level");
+            //PlaceAllIngredientsPanel.SetActive(true);
         }
     }
 }

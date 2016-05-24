@@ -79,9 +79,9 @@ public class GameManager : MonoBehaviour {
 		txt_LevelNo = GameObject.Find("txt_LevelNo").GetComponent<Text>();
 		txt_Score = GameObject.Find("txt_Score").GetComponent<Text>();
 		PausePanel.SetActive(false);
-		if (level == 6 || level == 12 || level == 18)
-			btn_Next.interactable = false;
-		boardScript.SetupScene(level);
+        if (level == 18)
+            btn_Next.interactable = false;
+        boardScript.SetupScene(level);
 	}
 	
 	public static void GameOver() {

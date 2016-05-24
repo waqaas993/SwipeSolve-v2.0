@@ -16,7 +16,7 @@ public class RedPlayer : Controller {
 		base.Start ();
 	}
 
-	/*//For Keyboard Inputs
+	//For Keyboard Inputs
 	// Update is called once per frame
 	protected new void Update() {
 		if (!GameManager.isGameOver) {
@@ -40,8 +40,8 @@ public class RedPlayer : Controller {
 				}
 			}
 		}
-	}*/
-    
+	}
+    /*
 	//For Android Inputs
 	// Update is called once per frame
 	protected new void Update() {
@@ -77,5 +77,5 @@ public class RedPlayer : Controller {
 			}
 		}
 	}
-    
+    */
 }

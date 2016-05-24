@@ -26,13 +26,17 @@ public class EventSystem : MonoBehaviour {
 		PlayerPrefs.SetInt("CurrentWorld",World);
 	}
 
-	public void NextLevel()
+	public void NextLevel(string World)
 	{
 		int CurrentLevel = PlayerPrefs.GetInt("CurrentLevel") + 1;
 		PlayerPrefs.SetInt("CurrentLevel",CurrentLevel);
-	}
+        if ((CurrentLevel-1) == 6 || (CurrentLevel-1) == 12)
+            SceneManager.LoadScene("SelectWorld");
+        else
+            SceneManager.LoadScene(World);
+    }
 
-	public void PlayButtonSound(){
+    public void PlayButtonSound(){
 		int Sound;
 		if(PlayerPrefs.HasKey("Sound"))
 			Sound = PlayerPrefs.GetInt("Sound");

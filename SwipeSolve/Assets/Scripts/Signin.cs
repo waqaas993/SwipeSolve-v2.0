@@ -2,16 +2,29 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Signin: MonoBehaviour {
+public class Signin : MonoBehaviour
+{
 
     private static string URL;
     private static InputField Username;
     private static InputField Password;
+    private static GameObject OnScreenButtonsPanel;
 
+    void Awake()
+    {
+        OnScreenButtonsPanel = GameObject.Find("fill-all");
+        Defaults();
+    }
+
+    public void Defaults()
+    {
+        OnScreenButtonsPanel.SetActive(false);
+    }
 
     // Use this for initialization
     public void OnSubmit()
     {
+        Defaults();
         Username = GameObject.Find("InputField1").GetComponent<InputField>();
         Password = GameObject.Find("InputField2").GetComponent<InputField>();
 
@@ -27,6 +40,11 @@ public class Signin: MonoBehaviour {
     {
         WWW Data = new WWW(URL);
         yield return Data;
-        print(Data.text);
+
+        if (Data.text == "0")
+            OnScreenButtonsPanel.SetActive(true);
+        else
+            Debug.Log(Data.text);
+
     }
 }

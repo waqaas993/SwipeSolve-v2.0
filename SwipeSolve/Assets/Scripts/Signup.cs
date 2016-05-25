@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Net;
 
 public class Signup : MonoBehaviour
 {
@@ -14,27 +15,30 @@ public class Signup : MonoBehaviour
     private static InputField Email;
     private static InputField Nick;
 
-    private static GameObject OnScreenButtonsPanel;
+    private static GameObject FillAll;
     private static GameObject userTaken;
     private static GameObject passMismatch;
-    private static GameObject SignupSuccess;
+	private static GameObject SignupSuccess;
+	private static GameObject InternetIssue;
 
 
     void Awake()
     {
-        OnScreenButtonsPanel = GameObject.Find("OnScreenButtonsPanel");
+		FillAll = GameObject.Find("OnScreenButtonsPanel");
         userTaken = GameObject.Find("user-taken");
         passMismatch = GameObject.Find("pass-mismatch");
-        SignupSuccess = GameObject.Find("Signup-Succesful");
+		SignupSuccess = GameObject.Find("Signup-Successful");
+		InternetIssue = GameObject.Find("InternetConnectivity");
         Defaults();
     }
 
     public void Defaults()
     {
-        OnScreenButtonsPanel.SetActive(false);
+		FillAll.SetActive(false);
         userTaken.SetActive(false);
         passMismatch.SetActive(false);
         SignupSuccess.SetActive(false);
+		InternetIssue.SetActive(false);
     }
 
     // Use this for initialization
@@ -55,29 +59,55 @@ public class Signup : MonoBehaviour
         URL += Nick.text;
 
 
+			//Client-sided Data validation
+			if (Password1.text != Password2.text)
+				passMismatch.SetActive(true);
+			else if (Username.text == "" || Password1.text == "" || Email.text == "" || Nick.text == "")
+				FillAll.SetActive(true);
+			else
+				StartCoroutine(signup());		
 
-        //Client-sided Data validation
-        if (Password1.text != Password2.text)
-            passMismatch.SetActive(true);
-        else if (Username.text == "" || Password1.text == "" || Email.text == "" || Nick.text == "")
-            OnScreenButtonsPanel.SetActive(true);
-        else
-            StartCoroutine(signup());
-    }
+	}
 
     private IEnumerator signup()
     {
+		Debug.Log(URL);
         WWW Data = new WWW(URL);
         yield return Data;
         //Server-sided Data validation
-        if (Data.text == "0")
-            userTaken.SetActive(true);
-        else if (Data.text == "1"){
-            SignupSuccess.SetActive(true);
-            yield return new WaitForSeconds(2);
-            SceneManager.LoadScene("MainMenu");
-        }
+		if (HasConnection()) {
+			print(Data.text);
+			if (Data.text == "1"){
+				SignupSuccess.SetActive(true);
+				yield return new WaitForSeconds(2);
+				SceneManager.LoadScene("MainMenu");
+			}
+			else if (Data.text == "0"){
+				userTaken.SetActive(true);
+			}
+		} else {
+			InternetIssue.SetActive(true);
+		}
+
         //Continue to the new screen in else-clause
     }
+		
+	bool HasConnection()
+	{
+		try
+		{
+			HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://swipe.googglet.com/");
+			request.Timeout = 5000;
+			request.Credentials = CredentialCache.DefaultNetworkCredentials;
+			HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+			if (response.StatusCode == HttpStatusCode.OK) return true;
+			else return false;
+		}
+		catch
+		{
+			return false;
+		}
+	}
 
 }

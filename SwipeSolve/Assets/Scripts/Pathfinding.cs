@@ -12,21 +12,22 @@ public class Pathfinding : MonoBehaviour
     private JsonSchema JsonObject;
     private int row;
     private int col;
-    //private static GameObject OopsPanel;
-    //private static GameObject GreatChallengePanel;
-    //private static GameObject PlaceAllIngredientsPanel;
+    private static GameObject OopsPanel;
+    private static GameObject GreatChallengePanel;
+    private static GameObject PlaceAllIngredientsPanel;
 
     private void Awake() {
-        //OopsPanel = GameObject.Find("OopsPanel");
-        //GreatChallengePanel = GameObject.Find("GoodToGoPanel");
-        //GreatChallengePanel = GameObject.Find("PlaceAllIngredientsPanel");
+		OopsPanel = GameObject.Find("Oops");
+		GreatChallengePanel = GameObject.Find("GoodToGo");
+		PlaceAllIngredientsPanel = GameObject.Find("PlaceAll");
+		Defaults();
     }
 
-    //public void Defaults() {
-    //    OopsPanel.SetActive(false);
-    //    GreatChallengePanel.SetActive(false);
-    //    //PlaceAllIngredientsPanel.SetActive(false);
-    //}
+    public void Defaults() {
+		OopsPanel.SetActive(false);
+		GreatChallengePanel.SetActive(false);
+		PlaceAllIngredientsPanel.SetActive(false);
+    }
 
     // Use this for initialization
     public void StartSearch()
@@ -80,16 +81,16 @@ public class Pathfinding : MonoBehaviour
             while (!redSearch.finished)
                 redSearch.Step();
 
-            //if (redSearch.path.Count != 0 && blueSearch.path.Count != 0)
-            //    OopsPanel.SetActive(true);
-            //else
-            //    GreatChallengePanel.SetActive(true);
+            if (redSearch.path.Count != 0 && blueSearch.path.Count != 0)
+                GreatChallengePanel.SetActive(true);
+            else
+                OopsPanel.SetActive(true);
         }
 
 
         catch (Exception)
         {
-            //PlaceAllIngredientsPanel.SetActive(true);
+            PlaceAllIngredientsPanel.SetActive(true);
         }
     }
 }

@@ -8,6 +8,7 @@ public class Signup : MonoBehaviour
 {
 
     private static string URL;
+    private static string uURL;
 
     private static InputField Username;
     private static InputField Password1;
@@ -17,6 +18,7 @@ public class Signup : MonoBehaviour
 
     private static GameObject FillAll;
     private static GameObject userTaken;
+    private static GameObject userAvailable;
     private static GameObject passMismatch;
 	private static GameObject SignupSuccess;
 	private static GameObject InternetIssue;
@@ -26,16 +28,25 @@ public class Signup : MonoBehaviour
     {
 		FillAll = GameObject.Find("OnScreenButtonsPanel");
         userTaken = GameObject.Find("user-taken");
+        userAvailable = GameObject.Find("user-available");
         passMismatch = GameObject.Find("pass-mismatch");
 		SignupSuccess = GameObject.Find("Signup-Successful");
 		InternetIssue = GameObject.Find("InternetConnectivity");
+
         Defaults();
+
+        Username = GameObject.Find("InputField1").GetComponent<InputField>();
+        Password1 = GameObject.Find("InputField2").GetComponent<InputField>();
+        Password2 = GameObject.Find("InputField3").GetComponent<InputField>();
+        Email = GameObject.Find("InputField4").GetComponent<InputField>();
+        Nick = GameObject.Find("InputField5").GetComponent<InputField>();
     }
 
     public void Defaults()
     {
 		FillAll.SetActive(false);
         userTaken.SetActive(false);
+        userAvailable.SetActive(false);
         passMismatch.SetActive(false);
         SignupSuccess.SetActive(false);
 		InternetIssue.SetActive(false);
@@ -45,11 +56,6 @@ public class Signup : MonoBehaviour
     public void OnSubmit()
     {
         Defaults();
-        Username = GameObject.Find("InputField1").GetComponent<InputField>();
-        Password1 = GameObject.Find("InputField2").GetComponent<InputField>();
-        Password2 = GameObject.Find("InputField3").GetComponent<InputField>();
-        Email = GameObject.Find("InputField4").GetComponent<InputField>();
-        Nick = GameObject.Find("InputField5").GetComponent<InputField>();
 
         URL = "http://swipe.googglet.com/signup.php?username=";
         URL += Username.text + "&password1=";
@@ -71,12 +77,10 @@ public class Signup : MonoBehaviour
 
     private IEnumerator signup()
     {
-		Debug.Log(URL);
         WWW Data = new WWW(URL);
         yield return Data;
         //Server-sided Data validation
 		if (HasConnection()) {
-			print(Data.text);
 			if (Data.text == "1"){
 				SignupSuccess.SetActive(true);
 				yield return new WaitForSeconds(2);
@@ -84,6 +88,7 @@ public class Signup : MonoBehaviour
 			}
 			else if (Data.text == "0"){
 				userTaken.SetActive(true);
+                userAvailable.SetActive(false);
 			}
 		} else {
 			InternetIssue.SetActive(true);
@@ -110,4 +115,26 @@ public class Signup : MonoBehaviour
 		}
 	}
 
+    public void UserAvailability() {
+        uURL = "http://swipe.googglet.com/IsUserAvailable.php?username=";
+        uURL += Username.text;
+        StartCoroutine(CheckUserAvailability());
+    }
+
+    private IEnumerator CheckUserAvailability()
+    {
+        WWW Data = new WWW(uURL);
+        yield return Data;
+        if (Data.text == "1")
+        {
+            userTaken.SetActive(false);
+            userAvailable.SetActive(true);
+        }
+        else if (Data.text == "0")
+        {
+            userTaken.SetActive(true);
+            userAvailable.SetActive(false);
+        }
+
+    }
 }

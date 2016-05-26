@@ -27,8 +27,8 @@ public class _Settings : MonoBehaviour {
 
 		if (Music == 0)
 			ToggleMusic.isOn = false;
-		else
-			GameObject.Find("Background_Music").GetComponent<AudioSource>().Play();
+		//else
+			//GameObject.Find("Background_Music").GetComponent<AudioSource>().Play();
 
 		if (Sound == 0)
 			ToggleSound.isOn = false;

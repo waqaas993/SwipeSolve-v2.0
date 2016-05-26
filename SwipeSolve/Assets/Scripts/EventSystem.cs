@@ -5,11 +5,29 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class EventSystem : MonoBehaviour {
+	private static GameObject BackgroundMusic;
+
+	void Awake(){
+		BackgroundMusic = GameObject.Find("Background_Music");
+	}
 
 	public void ChangeToScene (string sceneToChangeTo)
 	{
 		SceneManager.LoadScene(sceneToChangeTo);
 	}
+
+	public void ChangeToScene2 (string sceneToChangeTo)
+	{
+		Application.DontDestroyOnLoad(BackgroundMusic);
+		SceneManager.LoadScene(sceneToChangeTo);
+	}
+
+	public void ChangeToScene3 (string sceneToChangeTo)
+	{
+		Destroy(BackgroundMusic);
+		SceneManager.LoadScene(sceneToChangeTo);
+	}
+
 
 	public void SelectLevel(int Level)
 	{

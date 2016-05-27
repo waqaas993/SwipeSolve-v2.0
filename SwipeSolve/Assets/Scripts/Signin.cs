@@ -50,6 +50,8 @@ public class Signin : MonoBehaviour
         else if (Data.text == "1") {
             loginSuccess.SetActive(true);
             yield return new WaitForSeconds(2);
+            GameObject BackgroundMusic = GameObject.Find("Background_Music");
+            Application.DontDestroyOnLoad(BackgroundMusic);
             SceneManager.LoadScene("MainMenu");
         }
     }

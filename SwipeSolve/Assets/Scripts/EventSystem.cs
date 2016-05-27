@@ -5,9 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class EventSystem : MonoBehaviour {
-	private static GameObject BackgroundMusic;
+    private static GameObject BackgroundMusic;
+    private static GameObject MainMusic;
 
-	void Awake(){
+    void Awake(){
 		BackgroundMusic = GameObject.Find("Background_Music");
 	}
 
@@ -24,12 +25,22 @@ public class EventSystem : MonoBehaviour {
 
 	public void ChangeToScene3 (string sceneToChangeTo)
 	{
-		Destroy(BackgroundMusic);
-		SceneManager.LoadScene(sceneToChangeTo);
+        Destroy(BackgroundMusic);
+        Destroy(MainMusic);
+        SceneManager.LoadScene(sceneToChangeTo);
 	}
 
+    public void ChangeToScene4(string sceneToChangeTo)
+    {
+        Destroy(BackgroundMusic);
+        MainMusic = GameObject.Find("MainMusic");
+        MainMusic.GetComponent<AudioSource>().Play();
+        Application.DontDestroyOnLoad(MainMusic);
+        SceneManager.LoadScene(sceneToChangeTo);
+    }
 
-	public void SelectLevel(int Level)
+
+    public void SelectLevel(int Level)
 	{
 		PlayerPrefs.SetInt("CurrentLevel",Level);
 	}
@@ -72,18 +83,20 @@ public class EventSystem : MonoBehaviour {
 	}
 
 	public void ToggleMusic(){
-		Toggle ToggleMusic = GameObject.Find("ToggleMusic").GetComponent<Toggle>();
+        Destroy(MainMusic);
+        Toggle ToggleMusic = GameObject.Find("ToggleMusic").GetComponent<Toggle>();
 		bool Music = ToggleMusic.isOn;
 		if (!Music){
 			GameObject.Find("Background_Music").GetComponent<AudioSource>().mute = true;
 			PlayerPrefs.SetInt("Music",0);
 		}
 		else if (Music){
-			GameObject.Find("Background_Music").GetComponent<AudioSource>().mute = false;
+            GameObject.Find("Background_Music").GetComponent<AudioSource>().mute = false;
 			GameObject.Find("Background_Music").GetComponent<AudioSource>().Play();
-			PlayerPrefs.SetInt("Music",1);
-		}
-	}
+			PlayerPrefs.SetInt("Music",1); 
+        }
+        Application.DontDestroyOnLoad(BackgroundMusic);
+    }
 
 	public void ToggleSound(){
 		Toggle ToggleSound = GameObject.Find("ToggleSound").GetComponent<Toggle>();

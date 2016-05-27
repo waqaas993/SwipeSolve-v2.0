@@ -90,9 +90,9 @@ public class Signup : MonoBehaviour
 				userTaken.SetActive(true);
                 userAvailable.SetActive(false);
 			}
-		} else {
-			InternetIssue.SetActive(true);
 		}
+        else
+			InternetIssue.SetActive(true);
 
         //Continue to the new screen in else-clause
     }

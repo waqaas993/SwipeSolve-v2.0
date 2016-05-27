@@ -33,9 +33,13 @@ public class EventSystem : MonoBehaviour {
     public void ChangeToScene4(string sceneToChangeTo)
     {
         Destroy(BackgroundMusic);
-        MainMusic = GameObject.Find("MainMusic");
-        MainMusic.GetComponent<AudioSource>().Play();
-        Application.DontDestroyOnLoad(MainMusic);
+        int Music;
+        Music = PlayerPrefs.GetInt("Music");
+        if (Music == 1) {
+            MainMusic = GameObject.Find("MainMusic");
+            MainMusic.GetComponent<AudioSource>().Play();
+            Application.DontDestroyOnLoad(MainMusic);
+        }
         SceneManager.LoadScene(sceneToChangeTo);
     }
 

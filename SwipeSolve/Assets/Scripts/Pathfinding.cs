@@ -81,8 +81,10 @@ public class Pathfinding : MonoBehaviour
             while (!redSearch.finished)
                 redSearch.Step();
 
-            if (redSearch.path.Count != 0 && blueSearch.path.Count != 0)
+            if (redSearch.path.Count != 0 && blueSearch.path.Count != 0) {
+                PlayerPrefs.SetString("MapData", CreateLevel.JsonString);
                 GreatChallengePanel.SetActive(true);
+            }
             else
                 OopsPanel.SetActive(true);
         }

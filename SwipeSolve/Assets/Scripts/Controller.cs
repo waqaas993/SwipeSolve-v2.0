@@ -22,9 +22,10 @@ public class Controller : MonoBehaviour{
 	//For Balls to move
 	private float RemainingDistance;
 	private Vector3 babyStep;
+    private int level;
 
-	//For hitting the Objects with Ray beam from different positions
-	private RaycastHit2D hit;
+    //For hitting the Objects with Ray beam from different positions
+    private RaycastHit2D hit;
 	private Vector2 start;
 	protected Vector2 end;
 
@@ -36,7 +37,8 @@ public class Controller : MonoBehaviour{
 		PredBlueLoc = BlueBall.transform.position;
 		RedBall = (GameObject) GameObject.FindGameObjectWithTag("RedBall");
 		PredRedLoc = RedBall.transform.position;
-	}
+        level = PlayerPrefs.GetInt("CurrentLevel");
+    }
 
 	//Predicting a Collision
 	protected bool canMove(int x, int y, string identity){
@@ -82,13 +84,21 @@ public class Controller : MonoBehaviour{
 			RemainingDistance = (transform.position - end).sqrMagnitude;
 			yield return null;
 		}
-		GameManager.UpdateSwipes();
+        if (level == 0)
+            CustomGameManager.UpdateSwipes();
+        else
+            GameManager.UpdateSwipes();
 	}
 
 	protected virtual void Update(){
 		//Checking whether the Holes have consumed the Balls or not
-		if (BlueHole.transform.position == BlueBall.transform.position && RedHole.transform.position == RedBall.transform.position && !GameManager.isGameOver){
-			GameManager.GameOver();
-			}
-	}
+        if (level == 0){
+            if (BlueHole.transform.position == BlueBall.transform.position && RedHole.transform.position == RedBall.transform.position && !CustomGameManager.isGameOver)
+                CustomGameManager.GameOver();
+        }
+        else {
+            if (BlueHole.transform.position == BlueBall.transform.position && RedHole.transform.position == RedBall.transform.position && !GameManager.isGameOver)
+                GameManager.GameOver();
+        }
+    }
 }

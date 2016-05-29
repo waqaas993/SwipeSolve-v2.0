@@ -38,7 +38,10 @@ public class CustomLoadLevel : MonoBehaviour
         rows = JsonObject.BoardSize;
         columns = JsonObject.BoardSize;
         BoardSetup();
-        SixBySixCameraSettings();
+        if (JsonObject.BoardSize == 5)
+            FiveByFiveCameraSettings();
+        else
+            SixBySixCameraSettings();
         SpawnLevelComponents();
     }
 
@@ -90,27 +93,16 @@ public class CustomLoadLevel : MonoBehaviour
         instance.transform.SetParent(levelHolder);
     }
 
-	private void SixBySixCameraSettings(){
+    private void FiveByFiveCameraSettings()
+    {
+        Vector3 pos = new Vector3(2f, 2.57f, -10f);
+        MainCamera.transform.position = pos;
+        MainCamera.orthographicSize = 4.6f;
+    }
+
+    private void SixBySixCameraSettings(){
 		Vector3 pos = new Vector3(2.5f,3.27f,-10f);
 		MainCamera.transform.position = pos;
 		MainCamera.orthographicSize = 5.5f; 
-	}
-
-	private void SevenBySevenCameraSettings(){
-		Vector3 pos = new Vector3(3f,3.97f,-10f);
-		MainCamera.transform.position = pos;
-		MainCamera.orthographicSize = 6.5f;
-	}
-
-	private void EightByEightSettings(){
-		Vector3 pos = new Vector3(3.5f,4.6f,-10f);
-		MainCamera.transform.position = pos;
-		MainCamera.orthographicSize = 7.4f;
-	}
-
-	private void NineByNineSettings(){
-		Vector3 pos = new Vector3(4f,5.3f,-10f);
-		MainCamera.transform.position = pos;
-		MainCamera.orthographicSize = 8.4f;
 	}
 }

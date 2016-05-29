@@ -38,6 +38,7 @@ public class CustomGameManager : MonoBehaviour {
 		GameText.text = " Swipes: " + 0;
 		LevelNum = GameObject.Find("txt_LevelNum").GetComponent<Text>();
         LevelNum.text = "Custom Level";
+		LevelNum.fontSize = 90;
 		PausePanel = GameObject.Find("PausePanel");
 		txt_LevelNo = GameObject.Find("txt_LevelNo").GetComponent<Text>();
 		txt_Score = GameObject.Find("txt_Score").GetComponent<Text>();

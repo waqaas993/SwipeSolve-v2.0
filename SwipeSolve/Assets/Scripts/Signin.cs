@@ -64,7 +64,6 @@ public class Signin : MonoBehaviour
                 loginSuccess.SetActive(true);
                 yield return new WaitForSeconds(2);
                 GameObject BackgroundMusic = GameObject.Find("Background_Music");
-                Application.DontDestroyOnLoad(BackgroundMusic);
                 SceneManager.LoadScene("MainMenu");
             }
         }
